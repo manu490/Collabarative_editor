@@ -3,11 +3,33 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+      <a class="navbar-brand" href="#">CollabEditor</a>
+  </div>
+  </nav>
+  <div class="container margin-top">
+    <div class="row">
+      <div class="col-md-6">
+        {{> editor}}
+        {{> docList}}
+      </div>
+      <div class="col-md-6">
+        {{> viewer}}
+      </div>
+    </div>
+  </div>
 
-  {{> editor}}
 </body>
 
 <template name="editor">
-  {{> sharejsCM docid=docid id="editor"}}
+    {{> sharejsCM docid=docid onRender=config id="editor"}}
 </template>
+<template name="viewer">
+  <iframe id="iframe-viewer">
+  </iframe>
+</template>
+
+<template name="docList">
+  {{document}}
+  </template>
