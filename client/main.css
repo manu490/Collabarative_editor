@@ -7,16 +7,9 @@ body {
   margin-top: 50px;
 }
 #iframe-viewer{
-
- width:-webkit-fill-available; height:-webkit-fill-available; max-height:780px !important;
-  }
+  border:1px solid gray; resize:both;
+  width:100%;
+   }
 .CodeMirror{
-  border: solid 2px;
-
   min-height:-webkit-fill-available !important; max-height:780px !important;
-}
-.card {
-  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2);
-  padding: 1px 1px 1px 1px !important;
-  margin-left : 20px !important;
 }

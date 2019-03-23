@@ -1,3 +1,4 @@
+//Boilerplate code for accounts config
 Accounts.ui.config({
     requestPermissions: {},
     extraSignupFields: [{
