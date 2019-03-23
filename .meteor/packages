@@ -18,10 +18,10 @@ ecmascript@0.12.4              # Enable ECMAScript2015+ syntax in app code
 shell-server@0.4.0            # Server-side component of the `meteor shell` command
 
 autopublish@1.0.7             # Publish all data to the clients (for prototyping)
+stylus@=2.513.13
 edemaine:sharejs-codemirror
 session
 twbs:bootstrap
 accounts-password
 accounts-base
-stylus@=2.513.14
 ian:accounts-ui-bootstrap-3
