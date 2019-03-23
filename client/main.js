@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import '/api/collections.js';
+import '/client/accounts.js';
 import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 
@@ -15,20 +16,12 @@ Template.editor.helpers({
   },
   config:function(){
     return function(editor){
+      editor.setOption("mode", "html");
       editor.on("change",function(cm_editor, info){
-        console.log(cm_editor.getValue());
+        //console.log(cm_editor.getValue());
         $("#iframe-viewer").contents().find("html").html(cm_editor.getValue());
+        Meteor.call("addEditingUser");
       });
     }
   }
-});
-Template.docList.helpers({
-  document:function(){
-  doc = Documents.findOne();
-  if (doc){
-    return {"title":"nothing to see here"};
-  } else {
-    return doc;
-  }
-}
 });

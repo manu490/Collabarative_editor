@@ -6,15 +6,16 @@
   <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
       <a class="navbar-brand" href="#">CollabEditor</a>
+      <p class="navbar-right navbar-text">
+        {{> loginButtons align="left"}}</p>
   </div>
   </nav>
-  <div class="container margin-top">
-    <div class="row">
-      <div class="col-md-6">
+  <div class=" margin-top">
+    <div class="row container-fluid">
+      <div class="card col-md-6">
         {{> editor}}
-        {{> docList}}
       </div>
-      <div class="col-md-6">
+      <div class="card col-md-5">
         {{> viewer}}
       </div>
     </div>
@@ -29,7 +30,3 @@
   <iframe id="iframe-viewer">
   </iframe>
 </template>
-
-<template name="docList">
-  {{document}}
-  </template>
