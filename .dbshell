@@ -1,0 +1,7 @@
+db.documents.find()
+db.users.find()
+list
+show collections
+db.users.find()
+db.documents.find()
+db.documents.find().pretty()
