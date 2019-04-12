@@ -1,18 +1,16 @@
 <head>
   <title>textcircle</title>
 </head>
-
 <body>
-  <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-      <a class="navbar-brand" href="#">CollabEditor</a>
-      <p class="navbar-right navbar-text">
-        {{> loginButtons align="left"}}</p>
-  </div>
-  </nav>
+  {{> navbar}}
   <div class=" margin-top">
     <div class="row container-fluid">
-      <div class="col-md-6">
+      <div class="col-md-12">
+        {{> docInfo}}
+      </div>
+    </div>
+    <div class="row container-fluid">
+      <div class="col-md-12">
         {{> UsersOnline}}
       </div>
     </div>
@@ -27,13 +25,48 @@
       </div>
     </div>
   </div>
-
 </body>
+<template name="docInfo">
+{{#with document}}
+<span class="h1">{{> editableText collection = "documents" field = "title"}}</span>
+{{#if Owner}}
+<div class="checkbox">
+  <label><input type="checkbox" class="js-tog-private">Private</label>
+</div>
+{{/if}}
+{{/with}}
+
+</template>
+
 <template name="UsersOnline">
 {{#each users}}
 <span class="label label-success">{{firstname}}</span>
 {{/each}}
 </template>
+
+<template name="navbar">
+<nav class="navbar navbar-default navbar-fixed-top">
+<div class="container">
+    <a class="navbar-brand" href="#">CollabEditor</a>
+    <ul class="navbar-nav nav">
+      <li><a class="js-add-doc" href="#"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>new Document</a></li>
+
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documents <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              {{#each documents}}
+              <li><a href="#" class="js-load-doc">{{title}}</a></li>
+            {{/each}}
+          </ul>
+        </li>
+    </ul>
+    <p class="navbar-right navbar-text">
+      {{> loginButtons align="left"}}
+    </p>
+</div>
+</nav>
+</template>
+
 
 <template name="editor">
     {{> sharejsCM docid=docid onConnect=setMode onRender=config id="editor"}}
