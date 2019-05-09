@@ -1,6 +1,26 @@
 import './main.html';
+import './navbar.html';
+import './docItem.html';
+import './docList.html';
 Meteor.subscribe("documents");
 Meteor.subscribe("editingusers");
+Meteor.subscribe("comments");
+
+//Iron: router
+Router.configure({
+  layoutTemplate:'ApplicationLayout'
+});
+
+Router.route('/', function () {
+  this.render("navbar" , {to:"header"});
+  this.render("docList" , {to:"main"});
+});
+Router.route('/docs/:_id', function () {
+  Session.set("docid",this.params._id);
+  this.render("navbar" , {to:"header"});
+  this.render("docItem" , {to:"main"});
+});
+
 Template.editor.helpers({
   docid:function(){
     setupCurrentDocument();
@@ -13,9 +33,19 @@ Template.editor.helpers({
       editor.on("change",function(cm_editor, info){
         //console.log(cm_editor.getValue());
         $("#iframe-viewer").contents().find("html").html(cm_editor.getValue());
-        Meteor.call("addEditingUser");
+        Meteor.call("addEditingUser",Session.get("docid"));
       });
     }
+  }
+})
+Template.insertCommentform.helpers({
+  docid:function(){
+    return Session.get("docid");
+  }
+})
+Template.commentList.helpers({
+  comments:function(){
+    return Comments.find({docid:Session.get("docid")});
   }
 })
 Template.docInfo.helpers({
@@ -47,7 +77,7 @@ Template.UsersOnline.helpers({
   users:function(){
     if(Meteor.user()){
     var doc,users , euser;
-    doc=Documents.findOne();
+    doc=Documents.findOne({_id:Session.get("docid")});
     if(!doc){return;}
     euser=EditingUsers.findOne({docid:doc._id});
     if(!euser){return;}
@@ -66,6 +96,11 @@ Template.UsersOnline.helpers({
     }
 })
 Template.navbar.helpers({
+  documents:function(){
+    return Documents.find();
+  }
+})
+Template.docList.helpers({
   documents:function(){
     return Documents.find();
   }

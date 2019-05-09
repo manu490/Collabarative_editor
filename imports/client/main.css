@@ -3,8 +3,11 @@ body {
   height:100%;
   font-family: sans-serif;
 }
+#insertCommentform{
+  width:40%;
+}
 .margin-top{
-  margin-top: 50px;
+  margin-top: 120px;
 }
 #iframe-viewer{
   border:1px solid gray; resize:both;
@@ -12,4 +15,10 @@ body {
    }
 .CodeMirror{
   min-height:-webkit-fill-available !important; max-height:780px !important;
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  text-align: center;
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.2);
+  padding : 20px 10px 20px 10px;
 }

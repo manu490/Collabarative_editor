@@ -1,5 +1,7 @@
+import { Template } from 'meteor/templating';
+import { Meteor } from 'meteor/meteor';
+import { Blaze } from 'meteor/blaze';
 import '/imports/api/collections.js';
 import '/imports/api/accounts.js';
-import { ReactiveVar } from 'meteor/reactive-var';
 import '/imports/client/main.js';
 import '/imports/client/main.css';

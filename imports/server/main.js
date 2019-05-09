@@ -1,7 +1,7 @@
 Meteor.startup(() => {
   // code to run on server at startup
-  if(!Documents.findOne()){
-    Documents.insert({title:"My New Document "});
+  if(!Documents.findOne({isPrivate:false})){
+    Documents.insert({CreatedOn: new Date() , title:"Welcome Doc" , isPrivate:false});
   }
 });
 Meteor.publish("documents",function(){
@@ -12,7 +12,18 @@ Meteor.publish("documents",function(){
 Meteor.publish("editingusers",function(){
   return EditingUsers.find();
 })
+Meteor.publish("comments",function(){
+  return Comments.find();
+})
 Meteor.methods({
+  addcomment:function(comment){
+    console.log("Inserted");
+    if(this.userId){
+      comment.CreatedOn= new Date();
+      return Comments.insert(comment);
+    }
+    return;
+  },
   AddDoc:function(){
     var doc;
     if(!this.userId){ return ;}
@@ -23,9 +34,9 @@ Meteor.methods({
       return id ;
     }
   },
-  addEditingUser:function(){
+  addEditingUser:function(docid){
     var docs , user ,euser;
-    docs=Documents.findOne();
+    docs=Documents.findOne({_id:docid});
     if(!docs){
       return; //If no DOC exit
     }

@@ -25,3 +25,8 @@ accounts-base@1.4.3
 ian:accounts-ui-bootstrap-3
 blaze-html-templates
 babrahams:editable-text
+iron:router
+aldeed:autoform
+aldeed:simple-schema
+aldeed:collection2
+aldeed:collection2-core

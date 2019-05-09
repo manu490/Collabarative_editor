@@ -1,0 +1,11 @@
+<template name="docList">
+  <div class=" margin-top container-fluid">
+    <div class="row container-fluid">
+      {{#each documents}}
+      <div class="card col-md-3 col-xs-6">
+        <a href="/docs/{{_id}}">{{title}}</a>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</template>
